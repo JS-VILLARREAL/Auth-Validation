@@ -46,6 +46,7 @@ REST_FRAMEWORK = {
 AUTHENTICATION_BACKENDS = [
     'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
     
     'django.contrib.auth.backends.ModelBackend',
 ]
@@ -87,14 +88,6 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware', # CORS middleware
     'social_django.middleware.SocialAuthExceptionMiddleware', # Python social auth middleware
 
-    # 'django.contrib.sessions.middleware.SessionMiddleware',
-    # 'django.middleware.common.CommonMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware',
-    # 'django.contrib.auth.middleware.AuthenticationMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
-    # 'django.contrib.messages.middleware.MessageMiddleware',
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'django.middleware.security.SecurityMiddleware',  
 ]
 
 ROOT_URLCONF = 'autenticar.urls'
@@ -110,6 +103,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends', # Python social auth context processor
+                
             ],
         },
     },
@@ -178,11 +173,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-# CORS_ALLOWED_ORIGINS = [
-#     "https://127.0.0.1:5173",
-#     # ... otros orígenes permitidos ...
-# ]
-
 # La configuración `CSRF_TRUSTED_ORIGINS` se utiliza para especificar una lista de orígenes confiables
 # para la protección contra falsificación de solicitudes entre sitios (CSRF).
 CSRF_TRUSTED_ORIGINS = [
@@ -216,3 +206,7 @@ SIMPLE_JWT = {
 
 GOOGLE_OAUTH2_CLIENT_ID = '255051788274-gm6d9s0k39kevd868ao2ac5tfdnvrqcq.apps.googleusercontent.com'
 GOOGLE_OAUTH2_CLIENT_SECRET = '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'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1444993196075201'
+SOCIAL_AUTH_FACEBOOK_SECRET  = '24cea3cf5fdba216cfd16221caf7aa9b',
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email', 'public_profile'] 
